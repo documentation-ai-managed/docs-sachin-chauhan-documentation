@@ -1,0 +1,94 @@
+---
+title: Introduction
+description: Overview of Calify and its core capabilities for managing connections and scheduling
+---
+
+## Getting Started
+
+Calify is a comprehensive platform designed to streamline your personal and professional networking. It helps you manage connections, schedule meaningful interactions, and build your brand effectively. Whether you're an individual looking to grow your network or a professional tracking your personal brand, Calify provides the tools you need.
+
+<Columns cols={3}>
+  <Card title="Connections" icon="users" href="connections">
+    Easily manage and track your professional and personal relationships with our intuitive connection management tools.
+  </Card>
+  <Card title="Scheduling" icon="calendar" href="scheduling">
+    Schedule and organize interactions to maintain strong relationships and stay on top of your networking goals.
+  </Card>
+  <Card title="Brand Monitoring" icon="eye" href="brand-monitoring">
+    Track and analyze your personal or professional brand performance with detailed insights and metrics.
+  </Card>
+</Columns>
+
+## Key Features
+
+Calify offers a suite of features to enhance your networking experience. Our platform integrates seamlessly with popular tools, providing real-time updates and automated reminders. With Calify, you can focus on building authentic relationships while the platform handles the organizational aspects.
+
+<Tabs>
+  <Tab title="Web" icon="globe">
+    Access Calify from any web browser for full functionality on desktop or mobile devices.
+  </Tab>
+  <Tab title="Mobile" icon="smartphone">
+    Stay connected on the go with our native mobile apps for iOS and Android.
+  </Tab>
+</Tabs>
+
+<Steps>
+  <Step title="Sign Up" icon="user-plus">
+    Create your account and set up your profile with basic information.
+  </Step>
+  <Step title="Import Contacts" icon="upload">
+    Import your existing contacts from email or social media platforms.
+  </Step>
+  <Step title="Schedule First Interaction" icon="calendar">
+    Set up your first scheduled interaction to start building relationships.
+  </Step>
+</Steps>
+
+<Callout kind="info">
+  Calify supports integration with LinkedIn, Gmail, and Outlook for seamless contact management.
+</Callout>
+
+<Expandable title="Frequently Asked Questions" default-open="false">
+  <Expandable title="Is Calify free?" default-open="false">
+    Calify offers a free tier with basic features. Premium plans are available for advanced analytics and unlimited connections.
+  </Expandable>
+  <Expandable title="Can I export my data?" default-open="false">
+    Yes, you can export your connection data and schedules in CSV or JSON format at any time.
+  </Expandable>
+</Expandable>
+
+<CodeGroup tabs="JavaScript,Python">
+  ```javascript
+const calify = require('calify-sdk');
+
+const client = new calify.Client({ apiKey: 'your-api-key' });
+const connections = await client.getConnections();
+console.log(connections);
+```
+  ```python
+from calify_sdk import CalifyClient
+
+client = CalifyClient(api_key='your-api-key')
+connections = client.get_connections()
+print(connections)
+```
+</CodeGroup>
+
+## Why Choose Calify?
+
+With over 100,000 users worldwide, Calify has proven to be the go-to platform for professional networking. Our AI-powered insights help you prioritize your most valuable connections, while automated scheduling ensures you never miss an important interaction.
+
+| Feature | Free Plan | Premium Plan |
+|---------|-----------|--------------|
+| Connections | Up to 500 | Unlimited |
+| Scheduled Interactions | 10/month | Unlimited |
+| Brand Analytics | Basic | Advanced |
+
+<Update label="2024-10-15" description="v1.2.0" tags={["feature", "improvement"]}>
+## New Features
+- Added AI-powered connection recommendations
+- Improved mobile app performance
+## Improvements
+- Enhanced user interface for better navigation
+- Faster data synchronization across devices
+</Update>

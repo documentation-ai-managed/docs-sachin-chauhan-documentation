@@ -1,0 +1,149 @@
+---
+title: Connections
+description: Managing and organizing your professional and personal connections in Calify
+---
+
+## Understanding Connections
+
+Connections are the foundation of your networking efforts in Calify. Our platform helps you organize, track, and nurture relationships with both professional contacts and personal acquaintances.
+
+<Columns cols={2}>
+  <Card title="Professional" icon="briefcase" href="#professional-connections">
+    Manage business contacts, colleagues, and industry peers.
+  </Card>
+  <Card title="Personal" icon="users" href="#personal-connections">
+    Keep track of friends, family, and social connections.
+  </Card>
+</Columns>
+
+## Adding Connections
+
+Calify makes it easy to add new connections through multiple methods.
+
+<Steps>
+  <Step title="Manual Entry" icon="plus">
+    Add connections manually by entering their contact information.
+  </Step>
+  <Step title="Import from Email" icon="mail">
+    Import contacts from Gmail, Outlook, or other email providers.
+  </Step>
+  <Step title="Social Media Sync" icon="share">
+    Sync connections from LinkedIn or other social platforms.
+  </Step>
+</Steps>
+
+<CodeGroup tabs="JavaScript,Python">
+  ```javascript
+const calify = require('calify-sdk');
+const client = new calify.Client({ apiKey: 'your-api-key' });
+
+const newConnection = {
+  name: 'John Doe',
+  email: 'john@example.com',
+  type: 'professional',
+  notes: 'Met at conference'
+};
+
+await client.createConnection(newConnection);
+```
+  ```python
+from calify_sdk import CalifyClient
+
+client = CalifyClient(api_key='your-api-key')
+
+new_connection = {
+    'name': 'John Doe',
+    'email': 'john@example.com',
+    'type': 'professional',
+    'notes': 'Met at conference'
+}
+
+client.create_connection(new_connection)
+```
+</CodeGroup>
+
+## Organizing Connections
+
+Keep your network organized with tags, categories, and custom fields.
+
+<Tabs>
+  <Tab title="Tags" icon="tag">
+    Use tags to categorize connections by industry, location, or relationship type.
+  </Tab>
+  <Tab title="Categories" icon="folder">
+    Group connections into custom categories for better organization.
+  </Tab>
+  <Tab title="Custom Fields" icon="settings">
+    Add custom fields to store additional information specific to your needs.
+  </Tab>
+</Tabs>
+
+<Callout kind="tip">
+  Use consistent tagging to make searching and filtering more effective.
+</Callout>
+
+## Connection Insights
+
+Calify provides valuable insights into your connection network.
+
+<ExpandableGroup>
+  <Expandable title="Interaction History" default-open="false">
+    View a timeline of all interactions with each connection.
+  </Expandable>
+  <Expandable title="Connection Strength" default-open="false">
+    Monitor the strength of your relationships based on interaction frequency.
+  </Expandable>
+  <Expandable title="Network Analysis" default-open="false">
+    Get analytics on your overall network composition and growth.
+  </Expandable>
+</ExpandableGroup>
+
+## Best Practices
+
+Maximize the value of your Calify connections with these tips.
+
+- Regularly update connection information
+- Schedule periodic check-ins with important contacts
+- Use notes to remember personal details
+- Leverage tags for quick filtering and segmentation
+
+<CodeGroup tabs="cURL,Go">
+  ```bash
+curl -X GET "https://api.calify.com/connections?type=professional" \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+  ```go
+package main
+
+import (
+	"fmt"
+	"github.com/calify/calify-go"
+)
+
+func main() {
+	client := calify.NewClient("your-api-key")
+	connections, err := client.GetConnections(calify.ConnectionFilter{Type: "professional"})
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("Found %d professional connections\n", len(connections))
+}
+```
+</CodeGroup>
+
+## Troubleshooting
+
+Common issues when managing connections.
+
+| Issue | Solution |
+|-------|----------|
+| Duplicate connections | Use the merge feature to combine duplicate entries |
+| Import failures | Check file format and ensure all required fields are present |
+| Sync errors | Verify API permissions and connection status |
+
+<Update label="2024-08-10" description="v1.0.0" tags={["feature"]}>
+## Initial Features
+- Connection import and management
+- Basic tagging system
+- Interaction tracking
+</Update>

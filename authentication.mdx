@@ -1,0 +1,134 @@
+---
+title: Authentication
+description: Guide to authenticating with Calify API and managing access tokens
+---
+
+## Overview
+
+Authentication is the first step to accessing Calify's powerful networking tools. Our platform supports multiple authentication methods to ensure secure and convenient access across different use cases.
+
+<Callout kind="info">
+  All API requests require authentication using an API key or OAuth token.
+</Callout>
+
+## API Key Authentication
+
+The simplest way to authenticate is using an API key. You can generate API keys from your Calify dashboard.
+
+<Steps>
+  <Step title="Generate API Key" icon="key">
+    Log in to your Calify account and navigate to the API settings page.
+  </Step>
+  <Step title="Copy Key" icon="copy">
+    Copy the generated API key to a secure location.
+  </Step>
+  <Step title="Include in Requests" icon="send">
+    Include the API key in the Authorization header of your requests.
+  </Step>
+</Steps>
+
+<CodeGroup tabs="cURL,JavaScript,Python">
+  ```bash
+curl -H "Authorization: Bearer YOUR_API_KEY" https://api.calify.com/connections
+```
+  ```javascript
+const response = await fetch('https://api.calify.com/connections', {
+  headers: {
+    'Authorization': `Bearer ${apiKey}`
+  }
+});
+```
+  ```python
+import requests
+
+response = requests.get('https://api.calify.com/connections',
+  headers={'Authorization': f'Bearer {api_key}'})
+```
+</CodeGroup>
+
+## OAuth Integration
+
+For web applications, OAuth provides a more secure authentication flow without exposing API keys.
+
+<Tabs>
+  <Tab title="Web App" icon="globe">
+    Implement OAuth 2.0 flow for web applications.
+  </Tab>
+  <Tab title="Mobile App" icon="smartphone">
+    Use OAuth for native mobile applications.
+  </Tab>
+</Tabs>
+
+<Expandable title="OAuth Setup Guide" default-open="false">
+  1. Register your application in the Calify developer portal
+  2. Obtain client ID and secret
+  3. Implement the authorization code flow
+  4. Handle token refresh automatically
+</Expandable>
+
+## Token Management
+
+Proper token management is crucial for maintaining secure access to Calify services.
+
+<Callout kind="danger">
+  Never store API keys or tokens in client-side code or public repositories.
+</Callout>
+
+<ExpandableGroup>
+  <Expandable title="Token Expiration" default-open="false">
+    API tokens expire after 30 days. Use refresh tokens to obtain new access tokens.
+  </Expandable>
+  <Expandable title="Rate Limiting" default-open="false">
+    Calify enforces rate limits based on your plan. Monitor the X-RateLimit headers in responses.
+  </Expandable>
+</ExpandableGroup>
+
+## Best Practices
+
+Follow these security best practices to protect your Calify integration.
+
+- Use HTTPS for all API communications
+- Rotate API keys regularly
+- Implement proper error handling for authentication failures
+- Monitor API usage and set up alerts for unusual activity
+
+<CodeGroup tabs="Node.js,Ruby">
+  ```javascript
+const calify = require('calify-sdk');
+
+try {
+  const client = new calify.Client({ apiKey: process.env.CALIFY_API_KEY });
+  const user = await client.getCurrentUser();
+  console.log('Authenticated as:', user.name);
+} catch (error) {
+  console.error('Authentication failed:', error.message);
+}
+```
+  ```ruby
+require 'calify_sdk'
+
+begin
+  client = Calify::Client.new(api_key: ENV['CALIFY_API_KEY'])
+  user = client.current_user
+  puts "Authenticated as: #{user.name}"
+rescue Calify::AuthenticationError => e
+  puts "Authentication failed: #{e.message}"
+end
+```
+</CodeGroup>
+
+## Troubleshooting
+
+Common authentication issues and their solutions.
+
+| Issue | Solution |
+|-------|----------|
+| Invalid API key | Check that the key is correct and not expired |
+| Rate limit exceeded | Wait for the reset period or upgrade your plan |
+| OAuth redirect mismatch | Verify the redirect URI in your application settings |
+
+<Update label="2024-09-20" description="v1.1.0" tags={["security"]}>
+## Security Updates
+- Enhanced token encryption
+- Added support for multi-factor authentication
+</Update>

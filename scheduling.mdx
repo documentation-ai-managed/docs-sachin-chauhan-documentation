@@ -1,0 +1,178 @@
+---
+title: Scheduling
+description: How to schedule and manage interactions with your connections in Calify
+---
+
+## Introduction to Scheduling
+
+Effective scheduling is key to maintaining strong professional and personal relationships. Calify's scheduling tools help you plan, track, and follow up on interactions with your connections.
+
+<Columns cols={3}>
+  <Card title="Calendar Integration" icon="calendar" href="#calendar-sync">
+    Sync with Google Calendar, Outlook, and other calendar services.
+  </Card>
+  <Card title="Automated Reminders" icon="bell" href="#reminders">
+    Set up automatic reminders for upcoming interactions.
+  </Card>
+  <Card title="Follow-up Tracking" icon="check-circle" href="#follow-ups">
+    Track and manage follow-up actions after interactions.
+  </Card>
+</Columns>
+
+## Creating Scheduled Interactions
+
+Plan your networking activities with Calify's intuitive scheduling interface.
+
+<Steps>
+  <Step title="Select Connection" icon="user">
+    Choose the connection you want to interact with.
+  </Step>
+  <Step title="Choose Interaction Type" icon="message-square">
+    Select from call, meeting, email, or custom interaction types.
+  </Step>
+  <Step title="Set Date and Time" icon="clock">
+    Pick a convenient date and time for the interaction.
+  </Step>
+  <Step title="Add Details" icon="edit">
+    Include notes, agenda items, or preparation reminders.
+  </Step>
+</Steps>
+
+<CodeGroup tabs="JavaScript,Ruby">
+  ```javascript
+const calify = require('calify-sdk');
+const client = new calify.Client({ apiKey: 'your-api-key' });
+
+const schedule = {
+  connectionId: 'conn_123',
+  type: 'meeting',
+  scheduledAt: '2024-10-20T14:00:00Z',
+  notes: 'Discuss partnership opportunities'
+};
+
+await client.createSchedule(schedule);
+```
+  ```ruby
+require 'calify_sdk'
+
+client = Calify::Client.new(api_key: ENV['CALIFY_API_KEY'])
+
+schedule = {
+  connection_id: 'conn_123',
+  type: 'meeting',
+  scheduled_at: '2024-10-20T14:00:00Z',
+  notes: 'Discuss partnership opportunities'
+}
+
+client.create_schedule(schedule)
+```
+</CodeGroup>
+
+## Calendar Integration
+
+Sync your Calify schedules with popular calendar applications.
+
+<Tabs>
+  <Tab title="Google Calendar" icon="calendar">
+    Bidirectional sync with Google Calendar for seamless integration.
+  </Tab>
+  <Tab title="Outlook" icon="mail">
+    Connect with Microsoft Outlook for professional scheduling.
+  </Tab>
+  <Tab title="Apple Calendar" icon="smartphone">
+    Sync with iOS Calendar and macOS Calendar apps.
+  </Tab>
+</Tabs>
+
+<Callout kind="info">
+  Calendar sync requires granting appropriate permissions to Calify.
+</Callout>
+
+## Reminders and Notifications
+
+Stay on top of your scheduled interactions with customizable reminders.
+
+<ExpandableGroup>
+  <Expandable title="Email Reminders" default-open="false">
+    Receive email notifications before scheduled interactions.
+  </Expandable>
+  <Expandable title="Push Notifications" default-open="false">
+    Get mobile push notifications for upcoming events.
+  </Expandable>
+  <Expandable title="Custom Timing" default-open="false">
+    Set reminder timing from 15 minutes to 1 week in advance.
+  </Expandable>
+</ExpandableGroup>
+
+## Managing Schedules
+
+Update, reschedule, or cancel interactions as needed.
+
+<CodeGroup tabs="Python,PHP">
+  ```python
+from calify_sdk import CalifyClient
+
+client = CalifyClient(api_key='your-api-key')
+
+# Update a schedule
+updated_schedule = {
+    'id': 'sched_456',
+    'scheduled_at': '2024-10-21T10:00:00Z',
+    'notes': 'Updated meeting time'
+}
+client.update_schedule(updated_schedule)
+
+# Cancel a schedule
+client.cancel_schedule('sched_456')
+```
+  ```php
+<?php
+require 'vendor/autoload.php';
+
+use Calify\CalifyClient;
+
+$client = new CalifyClient('your-api-key');
+
+// Update a schedule
+$updatedSchedule = [
+    'id' => 'sched_456',
+    'scheduled_at' => '2024-10-21T10:00:00Z',
+    'notes' => 'Updated meeting time'
+];
+$client->updateSchedule($updatedSchedule);
+
+// Cancel a schedule
+$client->cancelSchedule('sched_456');
+?>
+```
+</CodeGroup>
+
+## Best Practices
+
+Optimize your scheduling workflow with these recommendations.
+
+- Schedule regular check-ins with key connections
+- Use different interaction types for variety
+- Include preparation notes for each schedule
+- Review and update schedules weekly
+
+<Callout kind="tip">
+  Use Calify's AI suggestions to optimize your interaction timing.
+</Callout>
+
+## Analytics and Reporting
+
+Track the effectiveness of your scheduling efforts.
+
+| Metric | Description |
+|--------|-------------|
+| Completion Rate | Percentage of scheduled interactions completed |
+| Follow-up Rate | Rate of follow-ups after interactions |
+| Connection Growth | Increase in connection strength over time |
+
+<Update label="2024-10-01" description="v1.1.5" tags={["improvement"]}>
+## Improvements
+- Enhanced calendar sync reliability
+- Added bulk scheduling options
+- Improved reminder customization
+</Update>

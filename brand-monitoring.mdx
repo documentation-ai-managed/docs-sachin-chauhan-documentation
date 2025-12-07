@@ -1,0 +1,150 @@
+---
+title: Brand Monitoring
+description: Track and analyze your personal or professional brand performance with Calify
+---
+
+## Brand Monitoring Overview
+
+Calify's brand monitoring tools help you understand how others perceive your personal or professional brand. Track mentions, sentiment, and engagement across various platforms.
+
+<Columns cols={2}>
+  <Card title="Social Media Tracking" icon="share" href="#social-monitoring">
+    Monitor your brand presence on social media platforms.
+  </Card>
+  <Card title="Sentiment Analysis" icon="bar-chart" href="#sentiment-analysis">
+    Analyze the sentiment of mentions and interactions.
+  </Card>
+</Columns>
+
+## Setting Up Brand Monitoring
+
+Configure your brand monitoring to track relevant keywords and platforms.
+
+<Steps>
+  <Step title="Define Keywords" icon="search">
+    Specify keywords, hashtags, and phrases related to your brand.
+  </Step>
+  <Step title="Select Platforms" icon="settings">
+    Choose social media and web platforms to monitor.
+  </Step>
+  <Step title="Set Alerts" icon="bell">
+    Configure alerts for important mentions or sentiment changes.
+  </Step>
+  <Step title="Review Dashboard" icon="eye">
+    Access your personalized brand monitoring dashboard.
+  </Step>
+</Steps>
+
+<CodeGroup tabs="JavaScript,Python">
+  ```javascript
+const calify = require('calify-sdk');
+const client = new calify.Client({ apiKey: 'your-api-key' });
+
+const monitorConfig = {
+  keywords: ['brand name', '#hashtag'],
+  platforms: ['twitter', 'linkedin'],
+  alertThreshold: 'high'
+};
+
+await client.createBrandMonitor(monitorConfig);
+```
+  ```python
+from calify_sdk import CalifyClient
+
+client = CalifyClient(api_key='your-api-key')
+
+monitor_config = {
+    'keywords': ['brand name', '#hashtag'],
+    'platforms': ['twitter', 'linkedin'],
+    'alert_threshold': 'high'
+}
+
+client.create_brand_monitor(monitor_config)
+```
+</CodeGroup>
+
+## Key Metrics
+
+Understand your brand performance through comprehensive metrics.
+
+<Tabs>
+  <Tab title="Reach" icon="users">
+    Total number of people exposed to your brand mentions.
+  </Tab>
+  <Tab title="Engagement" icon="heart">
+    Likes, shares, comments, and other interactions.
+  </Tab>
+  <Tab title="Sentiment" icon="smile">
+    Positive, negative, or neutral sentiment of mentions.
+  </Tab>
+</Tabs>
+
+<Callout kind="tip">
+  Focus on improving positive sentiment and engagement rates.
+</Callout>
+
+## Analytics Dashboard
+
+Get detailed insights into your brand performance.
+
+<ExpandableGroup>
+  <Expandable title="Trend Analysis" default-open="false">
+    View how your brand metrics change over time.
+  </Expandable>
+  <Expandable title="Competitor Comparison" default-open="false">
+    Compare your brand performance against competitors.
+  </Expandable>
+  <Expandable title="Top Content" default-open="false">
+    Identify your most engaging content and topics.
+  </Expandable>
+</ExpandableGroup>
+
+## Reports and Exports
+
+Generate comprehensive reports on your brand performance.
+
+<CodeGroup tabs="cURL,Java">
+  ```bash
+curl -X GET "https://api.calify.com/brand/reports?period=monthly" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -o brand_report.pdf
+```
+  ```java
+import com.calify.sdk.CalifyClient;
+import com.calify.sdk.BrandReport;
+
+CalifyClient client = new CalifyClient("your-api-key");
+BrandReport report = client.getBrandReport("monthly");
+report.exportToFile("brand_report.pdf");
+```
+</CodeGroup>
+
+## Best Practices
+
+Maximize the value of brand monitoring with these strategies.
+
+- Monitor relevant industry keywords beyond just your brand name
+- Set up alerts for negative sentiment to respond quickly
+- Use insights to refine your content strategy
+- Compare performance across different platforms
+
+<Callout kind="info">
+  Brand monitoring data is updated in real-time for accurate insights.
+</Callout>
+
+## Troubleshooting
+
+Common issues and solutions for brand monitoring.
+
+| Issue | Solution |
+|-------|----------|
+| Missing mentions | Expand keyword list and platform coverage |
+| Inaccurate sentiment | Review and adjust sentiment analysis settings |
+| Alert overload | Fine-tune alert thresholds and keywords |
+
+<Update label="2024-09-15" description="v1.1.2" tags={["feature"]}>
+## New Features
+- Real-time brand monitoring
+- Advanced sentiment analysis
+- Competitor comparison tools
+</Update>

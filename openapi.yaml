@@ -1,0 +1,215 @@
+openapi: '3.0.0'
+info:
+  version: 1.0.0
+  title: Calify API
+  license:
+    name: MIT
+servers:
+  - url: https://api.calify.com/v1
+paths:
+  /connections:
+    get:
+      summary: Retrieve a list of user connections with optional filtering and pagination support
+      operationId: listConnections
+      parameters:
+        - name: limit
+          in: query
+          description: Maximum number of connections to return, capped at 100 for optimal performance
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: Successful response returning a paginated array of connection objects with metadata
+          headers:
+            x-next:
+              description: URL link to retrieve the next page of results when available
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Connections'
+        default:
+          description: Error response for unexpected issues or invalid requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      summary: Create a new connection entry in the user's network with validation and duplicate checking
+      operationId: createConnection
+      responses:
+        201:
+          description: Connection successfully created with unique identifier assigned
+        default:
+          description: Error response for creation failures or validation errors
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /connections/{connectionId}:
+    get:
+      summary: Fetch detailed information for a specific connection including interaction history
+      operationId: getConnection
+      parameters:
+        - name: connectionId
+          in: path
+          required: true
+          description: Unique identifier of the connection to retrieve
+          schema:
+            type: string
+      responses:
+        200:
+          description: Detailed connection data returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Connections'
+        default:
+          description: Error response for connection not found or access issues
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /schedules:
+    get:
+      summary: List all scheduled interactions with filtering options for date ranges and connection types
+      operationId: listSchedules
+      parameters:
+        - name: status
+          in: query
+          description: Filter schedules by status such as pending, completed, or cancelled
+          required: false
+          schema:
+            type: string
+      responses:
+        200:
+          description: Array of schedule objects matching the specified criteria
+          headers:
+            x-next:
+              description: Pagination link for accessing additional schedule results
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Schedules'
+        default:
+          description: Error response for query failures or invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      summary: Schedule a new interaction with a connection including date, time, and details
+      operationId: createSchedule
+      responses:
+        201:
+          description: New schedule successfully created and confirmed
+        default:
+          description: Error response for scheduling conflicts or validation failures
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /brand/metrics:
+    get:
+      summary: Retrieve brand performance metrics including reach, engagement, and sentiment analysis
+      operationId: getBrandMetrics
+      parameters:
+        - name: period
+          in: query
+          description: Time period for metrics such as daily, weekly, or monthly aggregations
+          required: false
+          schema:
+            type: string
+      responses:
+        200:
+          description: Brand metrics data with key performance indicators
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BrandMetrics'
+        default:
+          description: Error response for metrics calculation failures
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Connection:
+      required:
+        - id
+        - name
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        email:
+          type: string
+        type:
+          type: string
+        notes:
+          type: string
+    Connections:
+      type: array
+      items:
+        $ref: '#/components/schemas/Connection'
+    Schedule:
+      required:
+        - id
+        - connectionId
+        - scheduledAt
+      properties:
+        id:
+          type: integer
+          format: int64
+        connectionId:
+          type: string
+        type:
+          type: string
+        scheduledAt:
+          type: string
+          format: date-time
+        notes:
+          type: string
+    Schedules:
+      type: array
+      items:
+        $ref: '#/components/schemas/Schedule'
+    BrandMetrics:
+      required:
+        - period
+        - reach
+        - engagement
+      properties:
+        period:
+          type: string
+        reach:
+          type: integer
+        engagement:
+          type: number
+        sentiment:
+          type: object
+          properties:
+            positive:
+              type: number
+            negative:
+              type: number
+            neutral:
+              type: number
+    Error:
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
